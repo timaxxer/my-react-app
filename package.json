@@ -10,6 +10,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-helmet": "^5.2.0",
     "react-jss": "latest",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

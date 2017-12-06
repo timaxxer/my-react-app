@@ -7,10 +7,8 @@ import withRoot from 'components/withRoot'
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
-import IconButton from 'material-ui/IconButton'
-import MenuIcon from 'material-ui-icons/Menu'
+import Background from 'components/Background'
 
 const styles = theme => ({
   root: {
@@ -20,12 +18,18 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  button: {
+    minWidth: 10,
+    height: 64
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
-});
-
+  label: {
+    textTransform: 'capitalize',
+  },
+})
 
 const App = (props) => {
   const {classes} = props;
@@ -33,17 +37,35 @@ const App = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link to="/">
-            <Button color="contrast" className={classes.flex}>Home</Button>
-          </Link>
+          <div className={classes.flex}>
+            <Link to="/">
+              <Button
+                color="contrast"
+                classes={{
+                  root: classes.button
+                }}>Home</Button>
+            </Link>
+            <Link to="/about-us">
+              <Button
+                color="contrast"
+                classes={{
+                  root: classes.button
+                }}>About</Button>
+            </Link>
+          </div>
           <Link to="/about-us">
-            <Button color="contrast">About</Button>
+            <Button
+              color="contrast"
+              classes={{
+                root: classes.button
+              }}>About</Button>
           </Link>
         </Toolbar>
       </AppBar>
+      <Background />
       <main>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/about-us" component={About}/>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about-us" component={About} />
       </main>
     </div>
   )
@@ -51,6 +73,6 @@ const App = (props) => {
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(withRoot(App))
+export default withRoot(withStyles(styles)(App))

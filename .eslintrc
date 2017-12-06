@@ -1,13 +1,10 @@
 {
   "parser"  : "babel-eslint",
   "extends" : [
-    "standard",
-    "standard-react",
     "react-app"
   ],
   "plugins" : [
-    "import",
-    "flow-vars"
+    "import"
   ],
   "env"     : {
     "browser" : true
@@ -23,8 +20,6 @@
   "rules": {
     "arrow-parens": 0,
     "comma-dangle": [2, "only-multiline"],
-    "flow-vars/define-flow-type": 1,
-    "flow-vars/use-flow-type": 1,
     "react/jsx-indent": 1,
     "react/jsx-no-bind": 0,
     "react/jsx-space-before-closing": 0,
