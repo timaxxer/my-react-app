@@ -1,0 +1,45 @@
+{
+  "parser"  : "babel-eslint",
+  "extends" : [
+    "standard",
+    "standard-react",
+    "react-app"
+  ],
+  "plugins" : [
+    "import",
+    "flow-vars"
+  ],
+  "env"     : {
+    "browser" : true
+  },
+  "globals" : {
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__TEST__"     : false,
+    "__DEBUG__"    : false,
+    "__DEBUG_NEW_WINDOW__" : false,
+    "__BASENAME__" : false
+  },
+  "rules": {
+    "arrow-parens": 0,
+    "comma-dangle": [2, "only-multiline"],
+    "flow-vars/define-flow-type": 1,
+    "flow-vars/use-flow-type": 1,
+    "react/jsx-indent": 1,
+    "react/jsx-no-bind": 0,
+    "react/jsx-space-before-closing": 0,
+    "react/jsx-tag-spacing": [2, {
+      "closingSlash": "never",
+      "beforeSelfClosing": "always",
+      "afterOpening": "never"
+    }],
+    "react/no-unused-prop-types": 0,
+    "semi" : [2, "never"],
+    "spaced-comment": [1, "always"],
+    "no-duplicate-imports": 0,
+    "import/no-duplicates": 1
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  }
+}

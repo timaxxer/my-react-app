@@ -1,0 +1,45 @@
+figure.bg {
+    background: #fff;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+svg {
+    position: absolute;
+}
+#gear-sm {
+    animation: spin 67.5s linear infinite;
+    left: 460px;
+    top: 560px;
+}
+#gear-md {
+    animation: spin 135.0s linear infinite;
+    animation-direction: reverse;
+    left: 620px;
+    top: 104px;
+}
+#gear-lg {
+    animation: spin 180s linear infinite;
+    left: -200px;
+    top: -510px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes spinBack {
+    0% {
+        transform: rotate(-0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}

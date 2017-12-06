@@ -1,6 +1,7 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React, { Component } from 'react';
+import { push } from 'react-router-redux'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Dialog, {
@@ -11,7 +12,6 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
 
 const styles = {
   root: {
@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-class Index extends Component {
+class Home extends Component {
   state = {
     open: false,
   };
@@ -40,6 +40,7 @@ class Index extends Component {
   render() {
     return (
       <div className={this.props.classes.root}>
+        <button onClick={() => this.props.changePage()}>Go to about page via redux</button>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
@@ -65,8 +66,15 @@ class Index extends Component {
   }
 }
 
-Index.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Index));
+const mapDispatchToProps = dispatch => bindActionCreators({
+  changePage: () => push('/about-us')
+}, dispatch)
+
+export default withStyles(styles)(connect(
+  null,
+  mapDispatchToProps
+)(Home))
