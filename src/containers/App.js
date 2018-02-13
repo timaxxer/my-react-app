@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
 import Home from 'containers/Home'
@@ -7,11 +7,13 @@ import withRoot from 'components/withRoot'
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
-import Button from 'material-ui/Button'
+import Drawer from 'material-ui/Drawer'
 import Background from 'components/Background'
 import Reboot from 'material-ui/Reboot'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
+import IconButton from 'material-ui/IconButton'
+import MenuIcon from 'material-ui-icons/Menu'
 
 const theme = createMuiTheme({
   palette: {
@@ -38,6 +40,9 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  list: {
+    width: 250,
+  },
   button: {
     minWidth: 10,
     height: 64
@@ -51,27 +56,42 @@ const styles = theme => ({
   },
 })
 
-const App = (props) => {
-  const {classes} = props;
-  return (
-    <MuiThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <Reboot />
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              Workbooks
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Background />
-        <main>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about-us" component={About} />
-        </main>
-      </div>
-    </MuiThemeProvider>
-  )
+class App extends Component {
+  state = {
+    drawerOpen: false
+  }
+  toggleDrawer = () => this.setState({drawerOpen: !this.state.drawerOpen})
+  render() {
+    const {classes} = this.props;
+
+    return (
+      <MuiThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <Reboot/>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton onClick={this.toggleDrawer} className={classes.menuButton} color="inherit" aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="title" color="inherit" className={classes.flex}>
+                Workbooks
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Background/>
+          <main>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/about-us" component={About}/>
+          </main>
+        </div>
+        <Drawer open={this.state.drawerOpen} onClose={this.toggleDrawer}>
+          <div className={classes.list}>
+            Test
+          </div>
+        </Drawer>
+      </MuiThemeProvider>
+    )
+  }
 }
 
 App.propTypes = {
