@@ -9,6 +9,26 @@ import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 import Background from 'components/Background'
+import Reboot from 'material-ui/Reboot'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+import Typography from 'material-ui/Typography'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#819ca9',
+      main: '#455a64',
+      dark: '#29434e',
+      contrastText: '#ffffff',
+    },
+    secondary: {
+      light: '#ff5131',
+      main: '#d50000',
+      dark: '#9b0000',
+      contrastText: '#ffffff',
+    },
+  },
+});
 
 const styles = theme => ({
   root: {
@@ -34,40 +54,23 @@ const styles = theme => ({
 const App = (props) => {
   const {classes} = props;
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <div className={classes.flex}>
-            <Link to="/">
-              <Button
-                color="contrast"
-                classes={{
-                  root: classes.button
-                }}>Home</Button>
-            </Link>
-            <Link to="/about-us">
-              <Button
-                color="contrast"
-                classes={{
-                  root: classes.button
-                }}>About</Button>
-            </Link>
-          </div>
-          <Link to="/about-us">
-            <Button
-              color="contrast"
-              classes={{
-                root: classes.button
-              }}>About</Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
-      <Background />
-      <main>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about-us" component={About} />
-      </main>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <Reboot />
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              Workbooks
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Background />
+        <main>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about-us" component={About} />
+        </main>
+      </div>
+    </MuiThemeProvider>
   )
 }
 

@@ -4,8 +4,9 @@ figure.bg {
     overflow: hidden;
     position: fixed;
     width: 100%;
-    z-index: -1;
+    z-index: 0;
     opacity: 0.05;
+    pointer-events: none;
 }
 
 svg {
