@@ -8,10 +8,6 @@ figure.bg {
     opacity: 0.05;
     pointer-events: none;
 }
-
-svg {
-    position: absolute;
-}
 #gear-sm {
     animation: spin 67.5s linear infinite;
     left: 460px;
@@ -27,6 +23,9 @@ svg {
     animation: spin 180s linear infinite;
     left: -200px;
     top: -510px;
+}
+a {
+    text-decoration: none;
 }
 
 @keyframes spin {

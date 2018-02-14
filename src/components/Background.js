@@ -4,7 +4,7 @@ import 'styles/style.css'
 export default () => (
   <div>
     <figure className="bg">
-      <svg
+      <svg style={{position: 'absolute'}}
         id="gear-sm" version="1.1" width="320" height="320" viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <path
           id="center"
@@ -102,7 +102,7 @@ export default () => (
       </svg>
 
 
-      <svg
+      <svg style={{position: 'absolute'}}
         id="gear-md" version="1.1" width="640" height="640" viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <path
           id="center"
@@ -292,7 +292,7 @@ export default () => (
       </svg>
 
 
-      <svg
+      <svg style={{position: 'absolute'}}
         id="gear-lg" version="1.1" width="1000" height="1000" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <path
           id="center"
