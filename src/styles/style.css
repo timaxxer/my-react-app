@@ -26,6 +26,7 @@ figure.bg {
 }
 a {
     text-decoration: none;
+    tab-index: -1;
 }
 
 @keyframes spin {
@@ -43,4 +44,10 @@ a {
     100% {
         transform: rotate(-360deg);
     }
+}
+
+*:focus {
+    outline-style:none;
+    box-shadow:none;
+    border-color:transparent;
 }
