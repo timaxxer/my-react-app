@@ -30,6 +30,9 @@ import AccountCircle from 'material-ui-icons/AccountCircle';
 import Alarm from 'material-ui-icons/Alarm';
 import PowerSettingsNew from 'material-ui-icons/PowerSettingsNew';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import { actions } from 'modules/activeUser'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 const theme = createMuiTheme({
   palette: {
@@ -75,6 +78,15 @@ const styles = theme => ({
   },
 })
 
+const mapStateToProps = (state) => ({
+  activeUser: state.activeUser
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actions, dispatch)
+})
+
+
 class App extends Component {
   state = {
     drawerOpen: false
@@ -91,6 +103,11 @@ class App extends Component {
     console.log(event)
     this.setState({ anchorEl: null, notifAnchorEl: null });
   };
+
+  componentWillMount () {
+    this.props.actions.getActiveUser()
+  }
+
   render() {
     const { classes } = this.props;
     const { anchorEl, notifAnchorEl } = this.state;
@@ -161,7 +178,7 @@ class App extends Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                <MenuItem dense onClick={this.handleClose}>Yanick Tremblay account</MenuItem>
+                <MenuItem dense onClick={this.handleClose}>{this.props.activeUser.user && this.props.activeUser.user.name}</MenuItem>
                 <MenuItem dense onClick={this.handleClose}>My account</MenuItem>
                 <Divider />
                 <MenuItem dense onClick={this.handleClose}>
@@ -226,4 +243,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withRoot(withStyles(styles)(App))
+export default connect(mapStateToProps, mapDispatchToProps)(withRoot(withStyles(styles)(App)))
